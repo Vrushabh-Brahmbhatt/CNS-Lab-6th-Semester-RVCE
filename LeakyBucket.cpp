@@ -1,13 +1,12 @@
 #include <iostream>
 #include <cstdlib>
-#include <unistd.h> // for sleep()
+#include <unistd.h>
 
 using namespace std;
 
 void leakyBucket(int &bucket, int packetSize, int bucketSize, int outputRate) {
     int time = 0;
 
-    // Check if the packet fits
     if (bucket + packetSize > bucketSize) {
         cout << "\nBucket Overflow! Packet of size " << packetSize << " bytes is dropped.\n";
     } else {
@@ -15,7 +14,6 @@ void leakyBucket(int &bucket, int packetSize, int bucketSize, int outputRate) {
         cout << "\nPacket of size " << packetSize << " bytes added to the bucket.\n";
     }
 
-    // Simulate leaky output
     while (bucket > 0) {
         sleep(1);
         time++;
@@ -61,4 +59,3 @@ int main() {
 
     return 0;
 }
-
